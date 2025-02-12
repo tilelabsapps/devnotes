@@ -1,4 +1,4 @@
-{% extends "!layout.html" %} {% block extrahead %}
+{% extends "!layout.html" %}
 <!-- Google tag (gtag.js) -->
 <script
     async
@@ -12,4 +12,4 @@
     gtag("js", new Date());
     gtag("config", "G-0SJ2Z3JMYZ");
 </script>
-{{ super() }} {% endblock %}
+{% block extrahead %} {{ super() }} {% endblock %}
