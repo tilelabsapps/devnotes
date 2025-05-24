@@ -1,0 +1,10 @@
+site_name: Developer Notes
+nav:
+  - index.md
+  - AI, ML and Agents:
+    - Frameworks: projects/project_a_more.md
+    - Hosting: projects/project_b.md
+    - ml/loss_functions.md
+  - Python:
+    - Syntax extentions: python/syntax_extensions.md
+
