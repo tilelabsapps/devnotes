@@ -9,7 +9,7 @@ nav:
     - Syntax extentions: python/syntax_extensions.md
 
 extra_javascript:
-  - path: https://www.googletagmanager.com/gtag/js?id=G-0SJ2Z3JMYZ
+  - path: https://www.googletagmanager.com/gtag/js?id=G-733NHS8MJJ
     type: text/javascript
     async: true # Or false
   - path: javascripts/g.js
@@ -18,12 +18,12 @@ extra_javascript:
 extra:
   extrahead:
     - |
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SJ2Z3JMYZ"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-733NHS8MJJ"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
           dataLayer.push(arguments);
         }
         gtag("js", new Date());
-        gtag("config", "G-0SJ2Z3JMYZ");
+        gtag("config", "G-733NHS8MJJ");
       </script>
