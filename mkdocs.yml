@@ -8,14 +8,6 @@ nav:
     - agents/topics.md
   - Python:
     - Syntax extentions: python/syntax_extensions.md
-
-extra_javascript:
-  - path: https://www.googletagmanager.com/gtag/js?id=G-733NHS8MJJ
-    type: text/javascript
-    async: true # Or false
-  - path: javascripts/g.js
-    type: text/javascript
-    async: false
 theme:
   name: mkdocs
   custom_dir: templates
