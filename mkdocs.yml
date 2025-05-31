@@ -5,6 +5,7 @@ nav:
     - Frameworks: projects/project_a_more.md
     - Hosting: projects/project_b.md
     - ml/loss_functions.md
+    - agents/topics.md
   - Python:
     - Syntax extentions: python/syntax_extensions.md
 
@@ -15,15 +16,7 @@ extra_javascript:
   - path: javascripts/g.js
     type: text/javascript
     async: false
-extra:
-  extrahead:
-    - |
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-733NHS8MJJ"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", "G-733NHS8MJJ");
-      </script>
+theme:
+  name: mkdocs
+  custom_dir: templates
+# templates_dir: templates
