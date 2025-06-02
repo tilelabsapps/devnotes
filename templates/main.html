@@ -1,4 +1,11 @@
 {% extends "base.html" %}
+
+{%- block site_meta %}
+  {{ super() }}
+        {% if page %}<meta name="article_title" content="{{ page.title }}">{% endif %}
+{% endblock %}
+
+
 {% block analytics %}
  <!-- Google Tag Manager -->                                                                                                                                          
  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':                                                                                                   
