@@ -5,7 +5,8 @@ nav:
     - Frameworks: projects/project_a_more.md
     - Hosting: projects/project_b.md
     - ml/loss_functions.md
-    - agents/topics.md
+    - a/agents/topics.md
+    - a/llm/vllm.md
   - Python:
     - Syntax extentions: python/syntax_extensions.md
 theme:
