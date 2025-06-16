@@ -2,13 +2,12 @@ site_name: Developer Notes
 nav:
   - index.md
   - AI, ML and Agents:
-    - Frameworks: projects/project_a_more.md
-    - Hosting: projects/project_b.md
-    - ml/loss_functions.md
+    - a/ml/loss_functions.md
     - a/agents/topics.md
     - a/llm/vllm.md
   - Python:
-    - Syntax extentions: python/syntax_extensions.md
+    - Syntax extentions: a/python/syntax_extensions.md
+    - Pydantic: a/python/pydantic.md
 theme:
   name: mkdocs
   custom_dir: templates
