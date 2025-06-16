@@ -6,7 +6,7 @@ nav:
     - a/agents/topics.md
     - a/llm/vllm.md
   - Python:
-    - Syntax extentions: a/python/syntax_extensions.md
+    # - Syntax extentions: a/python/syntax_extensions.md, not ready yet
     - Pydantic: a/python/pydantic.md
 theme:
   name: mkdocs
