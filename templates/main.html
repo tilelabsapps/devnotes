@@ -50,3 +50,14 @@
 </script>
 <!-- End Consent -->
 {% endblock %}
+
+{% block footer %}
+<hr>
+  {%- if config.copyright %}
+    <p>{{ config.copyright }}</p>
+  {%- endif %}
+  <p>
+    <a href="s/privacy-policy">Privacy Policy</a> | 
+    {% trans mkdocs_link='<a href="https://www.mkdocs.org/">MkDocs</a>' %}Built with {{ mkdocs_link }}.{% endtrans %}</p>
+
+{% endblock %}

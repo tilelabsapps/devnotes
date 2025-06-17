@@ -83,3 +83,9 @@ async def create_trigger(ctx: RunContext[Dependencies],
     return response
 
 ```
+
+## Patterns
+
+1. Request Objects.
+2. Expand dicts
+3. Re-use doc string (Pydantic)
