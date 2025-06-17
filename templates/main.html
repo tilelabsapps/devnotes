@@ -7,7 +7,20 @@
 
 
 {% block analytics %}
- <!-- Google Tag Manager -->                                                                                                                                          
+<!-- Consent -->
+ <script>
+    (function () {
+      if (!localStorage.getItem('cookieConsent')) {
+        const script = document.createElement('script');
+        script.src = '/javascripts/c.js';
+        script.async = true;
+        document.head.appendChild(script);
+      }
+    })();
+</script>
+<!-- End Consent -->
+
+<!-- Google Tag Manager A -->                                                                                                                                          
  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':                                                                                                   
  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],                                                                                            
  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=                                                                                                
@@ -23,6 +36,3 @@
   });
 </script>
 {% endblock %}
-
-
-
