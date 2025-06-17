@@ -120,7 +120,7 @@
   banner.className = 'cookie-banner';
   banner.id = 'cookieBanner';
   banner.innerHTML = `
-    <p>We use cookies to provide you with the best experience. You can accept all cookies, customize your preferences, or learn more in our <a href="/privacy-policy" style="color: #4CAF50;">Privacy Policy</a>.</p>
+    <p>We use cookies to provide you with the best experience. You can accept all cookies, customize your preferences, or learn more in our <a href="/s/privacy-policy" style="color: #4CAF50;">Privacy Policy</a>.</p>
     <div class="buttons">
       <button class="settings" onclick="CookieBanner.toggleSettings()">Settings</button>
       <button class="accept-all" onclick="CookieBanner.acceptAll()">Accept All</button>
