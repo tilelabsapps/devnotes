@@ -7,18 +7,7 @@
 
 
 {% block analytics %}
-<!-- Consent -->
- <script>
-    (function () {
-      if (!localStorage.getItem('cookieConsent')) {
-        const script = document.createElement('script');
-        script.src = '/javascripts/c.js';
-        script.async = true;
-        document.head.appendChild(script);
-      }
-    })();
-</script>
-<!-- End Consent -->
+
 
 <!-- Google Tag Manager A -->                                                                                                                                          
  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':                                                                                                   
@@ -32,7 +21,32 @@
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
   gtag('consent', 'default', {
-    'analytics_storage': 'granted',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
   });
+//  gtag('consent', 'default', {
+//    'analytics_storage': 'granted',
+//  });
 </script>
+<!-- Consent -->
+ <script>
+  window.CookieBannerConfig = {
+      onAnalyticsConsent: function () {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted',
+        });
+      }
+    };
+    (function () {
+      if (!localStorage.getItem('cookieConsent')) {
+        const script = document.createElement('script');
+        script.src = '/javascripts/c.js';
+        script.async = true;
+        document.head.appendChild(script);
+      }
+    })();
+</script>
+<!-- End Consent -->
 {% endblock %}

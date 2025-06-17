@@ -1,4 +1,13 @@
 (function () {
+  // Default configuration
+  const config = {
+    onAnalyticsConsent: null // Callback for analytics consent
+  };
+
+  // Allow external configuration
+  window.CookieBannerConfig = window.CookieBannerConfig || {};
+  Object.assign(config, window.CookieBannerConfig);
+
   // Create styles
   const styles = `
     .cookie-banner {
@@ -132,6 +141,12 @@
     init() {
       if (!localStorage.getItem('cookieConsent')) {
         document.getElementById('cookieBanner').classList.add('show');
+      } else {
+        // Check existing consent and trigger callback if analytics is enabled
+        const consent = JSON.parse(localStorage.getItem('cookieConsent') || '{}');
+        if (consent.analytics && config.onAnalyticsConsent) {
+          config.onAnalyticsConsent();
+        }
       }
     },
 
@@ -142,7 +157,9 @@
         marketing: true
       }));
       this.hideBanner();
-      // Add logic for enabling all cookies/analytics/marketing
+      if (config.onAnalyticsConsent) {
+        config.onAnalyticsConsent();
+      }
     },
 
     toggleSettings() {
@@ -152,13 +169,15 @@
 
     saveSettings() {
       const consent = {
-        essential: true, // Always true as they are required
+        essential: true,
         analytics: document.getElementById('analyticsCookies').checked,
         marketing: document.getElementById('marketingCookies').checked
       };
       localStorage.setItem('cookieConsent', JSON.stringify(consent));
       this.hideBanner();
-      // Add logic for enabling/disabling cookies based on consent
+      if (consent.analytics && config.onAnalyticsConsent) {
+        config.onAnalyticsConsent();
+      }
     },
 
     hideBanner() {
