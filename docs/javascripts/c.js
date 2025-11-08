@@ -139,7 +139,6 @@
   // CookieBanner object to manage functionality
   window.CookieBanner = {
     init() {
-      console.log('CookieBanner init called');
       document.getElementById('cookieBanner').classList.add('show');
     },
 
@@ -184,5 +183,4 @@
   } else {
     window.addEventListener('load', () => window.CookieBanner.init());
   }
-  console.log('Cookie Banner initialized, will init on load');
 })();
