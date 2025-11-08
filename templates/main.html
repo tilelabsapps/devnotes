@@ -30,8 +30,8 @@
       const consent = localStorage.getItem('cookieConsent');
       if (consent) {
         const consentData = JSON.parse(consent);
-        if (consentData.analytics && window.CookieBannerConfig.onAnalyticsConsent) {
-          window.CookieBannerConfig.onAnalyticsConsent(consent);
+        if (window.CookieBannerConfig.onAnalyticsConsent) {
+          window.CookieBannerConfig.onAnalyticsConsent(consentData);
         }
       } else {
         const script = document.createElement('script');

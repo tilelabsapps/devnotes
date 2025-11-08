@@ -143,14 +143,15 @@
     },
 
     acceptAll() {
-      localStorage.setItem('cookieConsent', JSON.stringify({
+      const consent = {
         essential: true,
         analytics: true,
         marketing: true
-      }));
+      }
+      localStorage.setItem('cookieConsent', JSON.stringify(consent));
       this.hideBanner();
       if (config.onAnalyticsConsent) {
-        config.onAnalyticsConsent();
+        config.onAnalyticsConsent(consent);
       }
     },
 
@@ -168,7 +169,7 @@
       localStorage.setItem('cookieConsent', JSON.stringify(consent));
       this.hideBanner();
       if (consent.analytics && config.onAnalyticsConsent) {
-        config.onAnalyticsConsent();
+        config.onAnalyticsConsent(consent);
       }
     },
 
