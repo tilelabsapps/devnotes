@@ -139,15 +139,8 @@
   // CookieBanner object to manage functionality
   window.CookieBanner = {
     init() {
-      if (!localStorage.getItem('cookieConsent')) {
-        document.getElementById('cookieBanner').classList.add('show');
-      } else {
-        // Check existing consent and trigger callback if analytics is enabled
-        const consent = JSON.parse(localStorage.getItem('cookieConsent') || '{}');
-        if (consent.analytics && config.onAnalyticsConsent) {
-          config.onAnalyticsConsent();
-        }
-      }
+      console.log('CookieBanner init called');
+      document.getElementById('cookieBanner').classList.add('show');
     },
 
     acceptAll() {
@@ -186,5 +179,10 @@
   };
 
   // Initialize banner
-  window.addEventListener('load', () => window.CookieBanner.init());
+  if (document.readyState === 'complete') {
+      window.CookieBanner.init();
+  } else {
+    window.addEventListener('load', () => window.CookieBanner.init());
+  }
+  console.log('Cookie Banner initialized, will init on load');
 })();
