@@ -36,6 +36,7 @@
         } catch (e) {        
           consentData = null;
           localStorage.removeItem('cookieConsent');
+          console.error('Failed to parse cookie consent from localStorage:', e);
         }
       }
       if (!consentData) {
