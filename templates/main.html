@@ -29,12 +29,14 @@
     (function checkConsent() {
       const consent = localStorage.getItem('cookieConsent');
       let consentData = null;
-      try {
-        consentData = JSON.parse(consent);
-        window.CookieBannerConfig.onAnalyticsConsent(consentData);
-      } catch (e) {        
-        let consentData = null;
-        localStorage.removeItem('cookieConsent');
+      if (consent) {
+        try {
+          consentData = JSON.parse(consent);          
+          window.CookieBannerConfig.onAnalyticsConsent(consentData);
+        } catch (e) {        
+          let consentData = null;
+          localStorage.removeItem('cookieConsent');
+        }
       }
       if (!consentData) {
         const script = document.createElement('script');

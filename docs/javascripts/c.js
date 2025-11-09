@@ -178,16 +178,15 @@
       document.getElementById('cookieBanner').classList.remove('show');
     }
   };
- if (document.readyState === 'loading') { // The document is still loading, so wait.
-    document.addEventListener('DOMContentLoaded', injectToDom);
-  } else { // The DOM is already ready.
+  function setupBanner() {
     injectToDom();
+    window.CookieBanner.init();
   }
-  // Initialize banner
-  if (document.readyState === 'complete') {
-      window.CookieBanner.init();
-  } else {
-    window.addEventListener('load', () => window.CookieBanner.init());
+  if (document.readyState === 'loading') { // The document is still loading, so wait.
+    document.addEventListener('DOMContentLoaded', setupBanner);
+    window.CookieBanner.init();
+  } else { // The DOM is already ready.
+    setupBanner();
   }
-  
+  // Initialize banner  
 })();
