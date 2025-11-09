@@ -34,7 +34,7 @@
           consentData = JSON.parse(consent);          
           window.CookieBannerConfig.onAnalyticsConsent(consentData);
         } catch (e) {        
-          let consentData = null;
+          consentData = null;
           localStorage.removeItem('cookieConsent');
         }
       }
