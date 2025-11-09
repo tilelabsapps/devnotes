@@ -110,55 +110,49 @@
     }
   `;
 
-  // Create style element
-  const styleSheet = document.createElement('style');
-  styleSheet.textContent = styles;
-  document.head.appendChild(styleSheet);
+  function injectToDom() {
+    // Create style element
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = styles;
+    document.head.appendChild(styleSheet);
 
-  // Create banner HTML
-  const banner = document.createElement('div');
-  banner.className = 'cookie-banner';
-  banner.id = 'cookieBanner';
-  banner.innerHTML = `
-    <p>We use cookies to provide you with the best experience. You can accept all cookies, customize your preferences, or learn more in our <a href="/s/privacy-policy" style="color: #4CAF50;">Privacy Policy</a>.</p>
-    <div class="buttons">
-      <button class="settings" onclick="CookieBanner.toggleSettings()">Settings</button>
-      <button class="accept-all" onclick="CookieBanner.acceptAll()">Accept All</button>
-    </div>
-    <div class="cookie-settings" id="cookieSettings">
-      <label><input type="checkbox" id="essentialCookies" checked disabled> Essential Cookies (Required)</label>
-      <label><input type="checkbox" id="analyticsCookies"> Analytics Cookies</label>
-      <label><input type="checkbox" id="marketingCookies"> Marketing Cookies</label>
-      <button class="save" onclick="CookieBanner.saveSettings()">Save Settings</button>
-    </div>
-  `;
-
-  // Append banner to body
-  document.body.appendChild(banner);
+    // Create banner HTML
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.id = 'cookieBanner';
+    banner.innerHTML = `
+      <p>We use cookies to provide you with the best experience. You can accept all cookies, customize your preferences, or learn more in our <a href="/s/privacy-policy" style="color: #4CAF50;">Privacy Policy</a>.</p>
+      <div class="buttons">
+        <button class="settings" onclick="CookieBanner.toggleSettings()">Settings</button>
+        <button class="accept-all" onclick="CookieBanner.acceptAll()">Accept All</button>
+      </div>
+      <div class="cookie-settings" id="cookieSettings">
+        <label><input type="checkbox" id="essentialCookies" checked disabled> Essential Cookies (Required)</label>
+        <label><input type="checkbox" id="analyticsCookies"> Analytics Cookies</label>
+        <label><input type="checkbox" id="marketingCookies"> Marketing Cookies</label>
+        <button class="save" onclick="CookieBanner.saveSettings()">Save Settings</button>
+      </div>
+    `;
+    // Append banner to body
+    document.body.appendChild(banner);
+  }
 
   // CookieBanner object to manage functionality
   window.CookieBanner = {
     init() {
-      if (!localStorage.getItem('cookieConsent')) {
-        document.getElementById('cookieBanner').classList.add('show');
-      } else {
-        // Check existing consent and trigger callback if analytics is enabled
-        const consent = JSON.parse(localStorage.getItem('cookieConsent') || '{}');
-        if (consent.analytics && config.onAnalyticsConsent) {
-          config.onAnalyticsConsent();
-        }
-      }
+      document.getElementById('cookieBanner').classList.add('show');
     },
 
     acceptAll() {
-      localStorage.setItem('cookieConsent', JSON.stringify({
+      const consent = {
         essential: true,
         analytics: true,
         marketing: true
-      }));
+      }
+      localStorage.setItem('cookieConsent', JSON.stringify(consent));
       this.hideBanner();
       if (config.onAnalyticsConsent) {
-        config.onAnalyticsConsent();
+        config.onAnalyticsConsent(consent);
       }
     },
 
@@ -175,16 +169,21 @@
       };
       localStorage.setItem('cookieConsent', JSON.stringify(consent));
       this.hideBanner();
-      if (consent.analytics && config.onAnalyticsConsent) {
-        config.onAnalyticsConsent();
-      }
+      config.onAnalyticsConsent(consent);
     },
 
     hideBanner() {
       document.getElementById('cookieBanner').classList.remove('show');
     }
   };
-
-  // Initialize banner
-  window.addEventListener('load', () => window.CookieBanner.init());
+  function setupBanner() {
+    injectToDom();
+    window.CookieBanner.init();
+  }
+  if (document.readyState === 'loading') { // The document is still loading, so wait.
+    document.addEventListener('DOMContentLoaded', setupBanner);
+  } else { // The DOM is already ready.
+    setupBanner();
+  }
+  // Initialize banner  
 })();
