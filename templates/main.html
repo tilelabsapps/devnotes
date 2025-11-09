@@ -19,7 +19,7 @@
 <!-- Consent -->
 <script>
   window.CookieBannerConfig = {
-      onAnalyticsConsent: function (consent) {
+      onAnalyticsConsent: function (consent) {          
           gtag('consent', 'update', {
             'analytics_storage': consent.analytics ? 'granted' : 'denied',
             'ad_storage': consent.marketing ? 'granted' : 'denied'
@@ -28,12 +28,15 @@
     };
     (function checkConsent() {
       const consent = localStorage.getItem('cookieConsent');
-      if (consent) {
-        const consentData = JSON.parse(consent);
-        if (window.CookieBannerConfig.onAnalyticsConsent) {
-          window.CookieBannerConfig.onAnalyticsConsent(consentData);
-        }
-      } else {
+      let consentData = null;
+      try {
+        consentData = JSON.parse(consent);
+        window.CookieBannerConfig.onAnalyticsConsent(consentData);
+      } catch (e) {        
+        let consentData = null;
+        localStorage.removeItem('cookieConsent');
+      }
+      if (!consentData) {
         const script = document.createElement('script');
         script.src = '/javascripts/c.js';
         script.async = true;
