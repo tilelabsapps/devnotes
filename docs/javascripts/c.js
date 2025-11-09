@@ -169,9 +169,7 @@
       };
       localStorage.setItem('cookieConsent', JSON.stringify(consent));
       this.hideBanner();
-      if (consent.analytics && config.onAnalyticsConsent) {
-        config.onAnalyticsConsent(consent);
-      }
+      config.onAnalyticsConsent(consent);
     },
 
     hideBanner() {
@@ -184,7 +182,6 @@
   }
   if (document.readyState === 'loading') { // The document is still loading, so wait.
     document.addEventListener('DOMContentLoaded', setupBanner);
-    window.CookieBanner.init();
   } else { // The DOM is already ready.
     setupBanner();
   }
